@@ -25,10 +25,11 @@ use \Firebase\JWT\JWT;
 
 $key = "example_key";
 $token = array(
-    "iss" => "http://example.org",
-    "aud" => "http://example.com",
-    "iat" => 1356999524,
-    "nbf" => 1357000000
+    "iss" => "http://example.org", //签发者 可选
+    "aud" => "http://example.com", //接收该JWT的一方 可选
+    "iat" => 1356999524, //签发时间
+    "nbf" => time()+30, //(Not Before):某个时间点后才能访问,比如设置time()+30,表示当前时间30秒后才能使用
+    "exp" => time()=7200,  //过期时间,这里设置2个小时
 );
 
 /**
@@ -43,18 +44,36 @@ print_r($decoded);
 /*
  提示: 对象转为数组
 */
-
 $decoded_array = (array) $decoded;
 
 /**
  * Source: http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#nbfDef
  */
-JWT::$leeway = 60; // $leeway in seconds
-$decoded = JWT::decode($jwt, $key, array('HS256'));
+try {
+    JWT::$leeway = 60; //当前时间减去60,把时间留点余地
+    $decoded = JWT::decode($jwt, $key, array('HS256')); // /key要和签发一致 HS256方式要和签发一致
+    $arr = (array)$decoded;
+    print_r($arr);
+} catch(\chenbool\JWT\SignatureInvalidException $e) {  
+    //签名不正确
+    echo $e->getMessage();
+}catch(\chenbool\JWT\BeforeValidException $e) {  
+    // 签名在某个时间点之后才能用
+    echo $e->getMessage();
+}catch(\chenbool\JWT\ExpiredException $e) {  
+    // token过期
+    echo $e->getMessage();
+}catch(Exception $e) {  
+    //其他错误
+    echo $e->getMessage();
+}
+
+
+
 
 ?>
 ```
-Example with RS256 (openssl)
+案例 RS256 (openssl)
 ----------------------------
 ```php
 <?php
