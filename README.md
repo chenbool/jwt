@@ -52,15 +52,23 @@ try {
     $decoded = JWT::decode($jwt, $key, array('HS256')); // /key要和签发一致 HS256方式要和签发一致
     $arr = (array)$decoded;
     print_r($arr);
+}catch(Exception $e) {  
+    echo $e->getMessage();  //错误提示
+}
+
+/**
+ * 重要: 在src目录下的JWT.php中的方法 decode中，可以看到是通过多个 自定义 throw new 抛出异常的
+ * 所以我们可以根据不同的throw new设置多个catch来捕获
+ */
+try {
+    JWT::$leeway = 60; 
+    $decoded = JWT::decode($jwt, $key, array('HS256')); 
 } catch(\chenbool\JWT\SignatureInvalidException $e) {  
-    //签名不正确
-    echo $e->getMessage();
+    echo $e->getMessage(); //签名不正确
 }catch(\chenbool\JWT\BeforeValidException $e) {  
-    // 签名在某个时间点之后才能用
-    echo $e->getMessage();
+    echo $e->getMessage(); // 签名在某个时间点之后才能用
 }catch(\chenbool\JWT\ExpiredException $e) {  
-    // token过期
-    echo $e->getMessage();
+    echo $e->getMessage();  // token过期
 }catch(Exception $e) {  
     //其他错误
     echo $e->getMessage();
