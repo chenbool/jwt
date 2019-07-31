@@ -1,14 +1,20 @@
 {
-    "name": "chenbool/php-jwt",
-    "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP",
+    "name": "chenbool/jwt",
+    "description": "一个简单的 PHP JSON Web Tokens (JWT) 加密/解密插件",
     "authors": [
         {
             "name": "chenbool",
-            "email": "30024167@qq.com"
+            "email": "30024167@qq.com",
+            "homepage": "https://github.com/chenbool"
         }
     ],
+    "keywords": [                                                   
+        "token",
+        "jwt"
+    ],
+    "homepage":"https://github.com/chenbool",
     "license": "MIT",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "require": {
         "php": ">=5.3.0"
     },
