@@ -73,7 +73,7 @@ try {
 ----------------------------
 ```php
 <?php
-use \Firebase\JWT\JWT;
+use \chenbool\JWT\JWT;
 
 $privateKey = <<<EOD
 -----BEGIN RSA PRIVATE KEY-----
@@ -110,11 +110,11 @@ $token = array(
 );
 
 $jwt = JWT::encode($token, $privateKey, 'RS256');
-echo "Encode:\n" . print_r($jwt, true) . "\n";
+echo "加密:\n" . print_r($jwt, true) . "\n";
 
 $decoded = JWT::decode($jwt, $publicKey, array('RS256'));
 $decoded_array = (array) $decoded;
-echo "Decode:\n" . print_r($decoded_array, true) . "\n";
+echo "解密:\n" . print_r($decoded_array, true) . "\n";
 
 ?>
 ```
