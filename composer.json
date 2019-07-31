@@ -12,7 +12,6 @@
     "keywords": ["token","jwt"],
     "homepage":"https://github.com/chenbool",
     "license": "MIT",
-    "version": "1.0.2",
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0"
