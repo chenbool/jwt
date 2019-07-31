@@ -14,14 +14,14 @@ PHP-JWT
 使用 composer 管理依赖并下载:
 
 ```bash
-composer require firebase/php-jwt
+composer require chenbool/jwt
 ```
 
-Example
+案例
 -------
 ```php
 <?php
-use \Firebase\JWT\JWT;
+use \chenbool\JWT\JWT;
 
 $key = "example_key";
 $token = array(
@@ -33,20 +33,18 @@ $token = array(
 );
 
 /**
- * 重要:
+ * 重要: 加密 token
  * https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40
  */
 $jwt = JWT::encode($token, $key);
 $decoded = JWT::decode($jwt, $key, array('HS256'));
-
+$decoded_array = (array) $decoded;
 print_r($decoded);
 
-/*
- 提示: 对象转为数组
-*/
-$decoded_array = (array) $decoded;
+
 
 /**
+ * 解密 验证
  * Source: http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#nbfDef
  */
 try {
@@ -67,8 +65,6 @@ try {
     //其他错误
     echo $e->getMessage();
 }
-
-
 
 
 ?>
@@ -107,24 +103,19 @@ ehde/zUxo6UvS7UrBQIDAQAB
 EOD;
 
 $token = array(
-    "iss" => "example.org",
-    "aud" => "example.com",
-    "iat" => 1356999524,
-    "nbf" => 1357000000
+    "iss" => "example.org", //签发者 可选
+    "aud" => "example.com", //接收该JWT的一方 可选
+    "iat" => 1356999524,    //签发时间
+    "nbf" => 1357000000 //(Not Before):某个时间点后才能访问,比如设置time()+30,表示当前时间30秒后才能使用
 );
 
 $jwt = JWT::encode($token, $privateKey, 'RS256');
 echo "Encode:\n" . print_r($jwt, true) . "\n";
 
 $decoded = JWT::decode($jwt, $publicKey, array('RS256'));
-
-/*
- NOTE: This will now be an object instead of an associative array. To get
- an associative array, you will need to cast it as such:
-*/
-
 $decoded_array = (array) $decoded;
 echo "Decode:\n" . print_r($decoded_array, true) . "\n";
+
 ?>
 ```
 
