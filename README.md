@@ -44,7 +44,7 @@ $token = array(
 );
 
 /**
- * 重要: 加密 token
+ * 加密
  * https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40
  */
 $jwt = JWT::encode($token, $key);
@@ -55,7 +55,7 @@ print_r($decoded);
 
 
 /**
- * 解密 验证
+ * 解密/验证
  * Source: http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#nbfDef
  */
 try {
@@ -68,7 +68,7 @@ try {
 }
 
 /**
- * 重要: 在src目录下的JWT.php中的方法 decode中，可以看到是通过多个 自定义 throw new 抛出异常的
+ * 提示: 在src目录下的JWT.php中的方法 decode中，可以看到是通过多个 自定义 throw new 抛出异常的
  * 所以我们可以根据不同的throw new设置多个catch来捕获
  */
 try {
