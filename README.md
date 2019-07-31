@@ -3,7 +3,7 @@
 [![Total Downloads](https://poser.pugx.org/firebase/php-jwt/downloads)](https://packagist.org/packages/firebase/php-jwt)
 [![License](https://poser.pugx.org/firebase/php-jwt/license)](https://packagist.org/packages/firebase/php-jwt)
 
-PHP-JWT
+JWT
 =======
 >
 一个简单的 PHP JSON Web Tokens (JWT) 加密/解密插件 [RFC 7519](https://tools.ietf.org/html/rfc7519).
