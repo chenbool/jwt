@@ -1,5 +1,6 @@
 {
     "name": "chenbool/jwt",
+    "type": "library",
     "description": "一个简单的 PHP JSON Web Tokens (JWT) 加密/解密插件",
     "authors": [
         {
@@ -8,10 +9,7 @@
             "homepage": "https://github.com/chenbool"
         }
     ],
-    "keywords": [                                                   
-        "token",
-        "jwt"
-    ],
+    "keywords": ["token","jwt"],
     "homepage":"https://github.com/chenbool",
     "license": "MIT",
     "version": "1.0.2",
