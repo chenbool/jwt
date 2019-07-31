@@ -5,8 +5,23 @@
 
 PHP-JWT
 =======
-<!-- 用PHP编码和解码JSONWeb令牌（JWT）的简单库 -->
+>
 一个简单的 PHP JSON Web Tokens (JWT) 加密/解密插件 [RFC 7519](https://tools.ietf.org/html/rfc7519).
+
+# 一：JWT介绍：
+    全称JSON Web Token，基于JSON的开放标准((RFC 7519) ，以token的方式代替传统的Cookie-Session模式，用于各服务器、客户端传递信息签名验证。
+
+
+# 二：JWT优点：
+
+    1：服务端不需要保存传统会话信息，没有跨域传输问题，减小服务器开销。
+
+    2：jwt构成简单，占用很少的字节，便于传输。
+
+    3：json格式通用，不同语言之间都可以使用。
+--------------------- 
+
+
 
 安装
 ------------
